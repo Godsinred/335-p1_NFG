@@ -15,7 +15,6 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
   
   <body>
     <h1>NFG</h1>
-    <h4>Time-stamp: <2019-01-21 20:11:03 Chuck Siska></h4>
 
     <script>draw_rect(canvas);</script>
     <canvas id="grid" width="2040" height="2030"></canvas>
@@ -39,9 +38,9 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
   // =====================================================  Main ====
     var canvas = document.getElementById( "grid" );
     var context = canvas.getContext( "2d" );
-    draw_rect( context, 'black', 'orange');
+    draw_rect( context, 'black', 'white');
     // Draw a grid
-    draw_grid( context, 5, 250, 'blue', 'silver' );
+    draw_grid( context, 5, 250, 'black', 'black' );
     draw_title( context );
 
   </script>
