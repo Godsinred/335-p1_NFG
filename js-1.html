@@ -10,18 +10,19 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
     <!-- Title on the top of the brower tab --> 
     <title>Cella Rule 90 Demonstration</title> 
 
-    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="assets/styles.css">
   </head>
   
   <body>
     <h1>NFG</h1>
     <h4>Time-stamp: <2019-01-21 20:11:03 Chuck Siska></h4>
 
+    <script>draw_rect(canvas);</script>
     <canvas id="grid" width="400" height="400"></canvas>
 
   </body>
 
-  <script src="../assets/draw-stuff.js"></script>
+  <script src="assets/draw-stuff.js"></script>
   <script>
   // after "Introducing JavaScript Game Development" by Stuart.
 
@@ -40,7 +41,7 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
     var context = canvas.getContext( "2d" );
     draw_rect( context );
     // Draw a grid
-    draw_grid( context, 10, 50, 'white', 'yellow' );
+    draw_grid( context, 10, 50, 'black', 'yellow' );
     draw_title( context );
 
   </script>
