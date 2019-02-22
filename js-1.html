@@ -38,10 +38,20 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
   // =====================================================  Main ====
     var canvas = document.getElementById( "grid" );
     var context = canvas.getContext( "2d" );
-    draw_rect( context, 'black', 'white');
-    // Draw a grid
+
+    // draws the rectange outside
+    // params: context, border color, middle fill color
+    draw_rect( context);
+    
+    // Draws the line marks on the grid
     draw_grid( context, 5, 250, 'black', 'black' );
-    draw_title( context );
+
+    // puts words on the canvas
+    //draw_title( context );
+
+    // fills the canvas
+    var num_canvas_cells = 400;
+    cella_90(context, num_canvas_cells);
 
   </script>
 </html>
