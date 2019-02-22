@@ -1,34 +1,47 @@
-<!doctype html><html><head>
-<title>This is an HTML canvas</title>
-<link rel="stylesheet" href="../assets/styles.css">
-</head>
-<body><h1>Playing the HTML canvas</h1>
-<h4>Time-stamp: <2019-01-21 20:11:03 Chuck Siska></h4>
+<!-- 
+Authors: Jonathan Ishii, Matthew Mikulka
+Contact: jtishii@csu.fullerton.edu, MATTHEW PUT YOUR EMAIL HERE <--------------------------------------------------------
+Description: This program illustrates Wolfram's Rule-90 is based on a 1D array where each cell is active. 
+            We will illustate on a webpage visually how this works
+-->
+<!doctype html>
+<html>
+  <head>
+    <!-- Title on the top of the brower tab --> 
+    <title>Cella Rule 90 Demonstration</title> 
 
-<canvas id="grid" width="400" height="400"></canvas>
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  
+  <body>
+    <h1>NFG</h1>
+    <h4>Time-stamp: <2019-01-21 20:11:03 Chuck Siska></h4>
 
-</body>
-<script src="../assets/draw-stuff.js"></script>
-<script>
-// after "Introducing JavaScript Game Development" by Stuart.
+    <canvas id="grid" width="400" height="400"></canvas>
 
-// =====================================================  draw_title ====
-// Draw filled rect.
-function draw_title( context ) 
-{
-    context.save( );
-    context.fillStyle = 'lightgrey';
-    context.font = "30px Arial";
-    context.fillText( "Grid", 150, 140 );
-    context.restore( );
-}
-// =====================================================  Main ====
-  var canvas = document.getElementById( "grid" );
-  var context = canvas.getContext( "2d" );
-  draw_rect( context );
-  // Draw a grid
-  draw_grid( context, 10, 50, 'white', 'yellow' );
-  draw_title( context );
+  </body>
 
-</script>
+  <script src="../assets/draw-stuff.js"></script>
+  <script>
+  // after "Introducing JavaScript Game Development" by Stuart.
+
+  // =====================================================  draw_title ====
+  // Draw filled rect.
+  function draw_title( context ) 
+  {
+      context.save( );
+      context.fillStyle = 'lightgrey';
+      context.font = "30px Arial";
+      context.fillText( "Grid", 150, 140 );
+      context.restore( );
+  }
+  // =====================================================  Main ====
+    var canvas = document.getElementById( "grid" );
+    var context = canvas.getContext( "2d" );
+    draw_rect( context );
+    // Draw a grid
+    draw_grid( context, 10, 50, 'white', 'yellow' );
+    draw_title( context );
+
+  </script>
 </html>
