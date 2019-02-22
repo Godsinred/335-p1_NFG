@@ -41,7 +41,7 @@ function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
         rctx.lineTo( width, iy + 15 );
         rctx.lineWidth = ( iy % rmajor == 0 ) ? 0.5 : 0.25;
         rctx.stroke( );
-        if ( iy % rmajor == 0 ) {rctx.fillText( iy /5, 0, iy + 20 );}
+        if ( iy % rmajor == 0  && iy != 0) {rctx.fillText( iy /5, 0, iy + 20 );}
     }
     rctx.restore( );
 }
