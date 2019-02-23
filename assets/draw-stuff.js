@@ -50,6 +50,8 @@ function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
 function cella_90( ctx, num_canvas_cells) 
 {
     ctx.save( );
+    ctx.fillStyle = 'black';
+
     // the offset of the canvas to put the squares in the right place
     var x_offset = 20;
     var y_offset = 15;
@@ -71,55 +73,51 @@ function cella_90( ctx, num_canvas_cells)
     // for indexing through the rows starting at the second one since the first one has been initialized
     for ( var i = 1; i <= num_canvas_cells; ++i )
     {
-        //nap(1000);
+        
         // for indexing through the columns
         // you do not need to search every element since the rules expands linearly outwards in each direction
         for ( var j = starting_index - i; j < half_num_canvas + i; ++j )
         {
-            if(j >= 0 && j <= 399)
+            // value to be passed into rule_rule check to determine the next generation of the cell
+            var cell_value = 0;
+
+            // checks to make sure that you don't index out of the array in the bottom row
+            if (i !== num_canvas_cells - 1)
             {
-                // value to be passed into rule_rule check to determine the next generation of the cell
-                var cell_value = 0;
-
-                // checks to make sure that you don't index out of the array in the bottom row
-                if (i !== num_canvas_cells - 1)
+                // checks the value of above and left
+                if (array[i - 1][j - 1] === 1)
                 {
-                    // checks the value of above and left
-                    if (array[i - 1][j - 1] === 1)
-                    {
-                        cell_value += 4;
-                    }
-
-                    // checks the value of above and right
-                    if (array[i - 1][j + 1] === 1)
-                    {
-                        cell_value += 1;
-                    }
+                    cell_value += 4;
                 }
 
-                // checks the value of right above
-                if (array[i - 1][j] === 1)
+                // checks the value of above and right
+                if (array[i - 1][j + 1] === 1)
                 {
-                    cell_value += 2;
+                    cell_value += 1;
                 }
+            }
 
-                var color = rule_check(cell_value);
-                //console.log(color);
+            // checks the value of right above
+            if (array[i - 1][j] === 1)
+            {
+                cell_value += 2;
+            }
 
-                // colors the square if it is 1 i.e. black, since the color is already white
-                if (color === 1)
+            var color = rule_check(cell_value);
+            //console.log(color);
+
+            // colors the square if it is 1 i.e. black, since the color is already white
+            if (color === 1)
+            {
+                array[i][j] = 1;
+                
+                if (j >= 0 && j < 400)
                 {
-                    array[i][j] = 1;
-                    
-                    ctx.fillStyle = 'black';
-
                     // rect(the x cord in the upper left corner, the y cord of the upper left rect, width, height)
                     ctx.rect(x_offset + (j * 5), y_offset + (i * 5), 5, 5);
                     ctx.fill();
-                    
                 }
             }
-            
         }
     }
     ctx.restore( );
@@ -161,13 +159,3 @@ function rule_check(cell_value)
             return 0;
     }
 }
-
-function nap(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  
-  async function sleep(ms) {
-    console.log('Taking a break...');
-    await nap(ms);
-    console.log('Two seconds later');
-  }
