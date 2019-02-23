@@ -11,7 +11,7 @@ function draw_rect( ctx, stroke, fill )
     ctx.strokeStyle = stroke;
     ctx.fillStyle = fill;
     ctx.lineWidth = 5;
-    ctx.rect(20, 15, canvas.width - 35, canvas.height - 30);
+    ctx.rect(20, 15, canvas.width - 40, canvas.height - 35);
     ctx.stroke();
     ctx.fill();
     ctx.restore( );
@@ -49,6 +49,7 @@ function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
 // fills the boxes according to the Wolfram Cella 90 Rule
 function cella_90( ctx, num_canvas_cells) 
 {
+    ctx.save( );
     // the offset of the canvas to put the squares in the right place
     var x_offset = 20;
     var y_offset = 15;
@@ -78,23 +79,23 @@ function cella_90( ctx, num_canvas_cells)
             var cell_value = 0;
 
             // checks to make sure that you don't index out of the array in the bottom row
-            if(i != num_canvas_cells - 1)
+            if(i !== num_canvas_cells - 1)
             {
                 // checks the value of above and left
-                if(array[i - 1][j - 1] == 1)
+                if(array[i - 1][j - 1] === 1)
                 {
                     cell_value += 4;
                 }
 
                 // checks the value of above and right
-                if(array[i - 1][j + 1] == 1)
+                if(array[i - 1][j + 1] === 1)
                 {
                     cell_value += 1;
                 }
             }
 
             // checks the value of right above
-            if(array[i - 1][j] == 1)
+            if(array[i - 1][j] === 1)
             {
                 cell_value += 2;
             }
@@ -103,19 +104,20 @@ function cella_90( ctx, num_canvas_cells)
             //console.log(color);
 
             // colors the square if it is 1 i.e. black, since the color is already white
-            if(color == 1)
+            if(color === 1)
             {
                 array[i][j] = 1;
-                ctx.save( );
+                
                 ctx.fillStyle = 'black';
             
                 // rect(the x cord in the upper left corner, the y cord of the upper left rect, width, height)
                 ctx.rect(x_offset + (j * 5), y_offset + (i * 5), 5, 5);
                 ctx.fill();
-                ctx.restore( );
+                
             }
         }
     }
+    ctx.restore( );
 }
 
 function color_starting_square(ctx, num_canvas_cells, x_offset, y_offset)
