@@ -11,7 +11,7 @@ function draw_rect( ctx, stroke, fill )
     ctx.strokeStyle = stroke;
     ctx.fillStyle = fill;
     ctx.lineWidth = 5;
-    ctx.rect(20, 15, canvas.width - 40, canvas.height - 35);
+    ctx.rect(20, 15, canvas.width - 40, canvas.height - 30);
     ctx.stroke();
     ctx.fill();
     ctx.restore( );
@@ -24,7 +24,7 @@ function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
     rctx.strokeStyle = rstroke;
     rctx.fillStyle = rfill;
     let width = rctx.canvas.width - 25;
-    let height = rctx.canvas.height - 20;
+    let height = rctx.canvas.height - 15;
     for ( var ix = 0; ix < width - 10; ix += rminor )
     {
         rctx.beginPath( );
@@ -71,7 +71,7 @@ function cella_90( ctx, num_canvas_cells)
     //console.log(array[0][starting_index]);
 
     // for indexing through the rows starting at the second one since the first one has been initialized
-    for ( var i = 1; i <= num_canvas_cells; ++i )
+    for ( var i = 1; i < num_canvas_cells; ++i )
     {
         
         // for indexing through the columns
@@ -82,8 +82,8 @@ function cella_90( ctx, num_canvas_cells)
             var cell_value = 0;
 
             // checks to make sure that you don't index out of the array in the bottom row
-            if (i !== num_canvas_cells - 1)
-            {
+            
+            
                 // checks the value of above and left
                 if (array[i - 1][j - 1] === 1)
                 {
@@ -95,7 +95,7 @@ function cella_90( ctx, num_canvas_cells)
                 {
                     cell_value += 1;
                 }
-            }
+            
 
             // checks the value of right above
             if (array[i - 1][j] === 1)
@@ -114,8 +114,11 @@ function cella_90( ctx, num_canvas_cells)
                 if (j >= 0 && j < 400)
                 {
                     // rect(the x cord in the upper left corner, the y cord of the upper left rect, width, height)
-                    ctx.rect(x_offset + (j * 5), y_offset + (i * 5), 5, 5);
-                    ctx.fill();
+                    // ctx.rect(x_offset + (j * 5), y_offset + (i * 5), 5, 5);
+                    // ctx.fill();
+
+                    // made an asynchronous function so it loads the webpage before everything is finished
+                    color_cell(ctx, x_offset + (j * 5), y_offset + (i * 5));
                 }
             }
         }
@@ -158,4 +161,15 @@ function rule_check(cell_value)
         default :
             return 0;
     }
+}
+
+async function color_cell(ctx, x, y)
+{
+    await sleep(1);
+    ctx.rect(x, y, 5, 5);
+    ctx.fill();
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
