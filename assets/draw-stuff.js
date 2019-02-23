@@ -60,22 +60,25 @@ function cella_90( ctx, num_canvas_cells)
     let array = Array(num_canvas_cells).fill().map(() => Array(num_canvas_cells).fill(0));    
 
     // initializes the start of the cella rule
-    array[0][Math.floor(num_canvas_cells / 2) - 1] = 1;
-
-    console.log(array[0][199]);
+    var half_num_canvas = Math.floor(num_canvas_cells / 2);
+    var starting_index = half_num_canvas - 1;
+    array[0][starting_index] = 1;
+    color_starting_square(ctx, num_canvas_cells, x_offset, y_offset);
+    
+    //console.log(array[0][starting_index]);
 
     // for indexing through the rows starting at the second one since the first one has been initialized
-    for ( var i = 1; i < 400; ++i )
+    for ( var i = 1; i <= num_canvas_cells; ++i )
     {
         // for indexing through the columns
         // you do not need to search every element since the rules expands linearly outwards in each direction
-        for ( var j = 199 - i; j < 200 + i; ++j )
+        for ( var j = starting_index - i; j < half_num_canvas + i; ++j )
         {
             // value to be passed into rule_rule check to determine the next generation of the cell
             var cell_value = 0;
 
             // checks to make sure that you don't index out of the array in the bottom row
-            if(i != 399)
+            if(i != num_canvas_cells - 1)
             {
                 // checks the value of above and left
                 if(array[i - 1][j - 1] == 1)
@@ -90,31 +93,64 @@ function cella_90( ctx, num_canvas_cells)
                 }
             }
 
-
             // checks the value of right above
             if(array[i - 1][j] == 1)
             {
                 cell_value += 2;
             }
 
+            var color = rule_check(cell_value);
+            //console.log(color);
 
-            //rule_check(array);
-            //console.log(array[i][j]);
+            // colors the square if it is 1 i.e. black, since the color is already white
+            if(color == 1)
+            {
+                array[i][j] = 1;
+                ctx.save( );
+                ctx.fillStyle = 'black';
+            
+                // rect(the x cord in the upper left corner, the y cord of the upper left rect, width, height)
+                ctx.rect(x_offset + (j * 5), y_offset + (i * 5), 5, 5);
+                ctx.fill();
+                ctx.restore( );
+            }
         }
     }
+}
 
+function color_starting_square(ctx, num_canvas_cells, x_offset, y_offset)
+{
     ctx.save( );
-    ctx.fillStyle = 'yellow';
+    ctx.fillStyle = 'black';
 
-    // puts a box in the first corner of the canvas
-    //ctx.rect(x_offset, y_offset, 5, 5);
-
-    ctx.rect(x_offset + (box_size * 199), y_offset, 5, 5);
+    // rect(the x cord in the upper left corner, the y cord of the upper left rect, width, height)
+    ctx.rect(x_offset + ((Math.floor(num_canvas_cells / 2) - 1) * 5), y_offset, 5, 5);
     ctx.fill();
     ctx.restore( );
 }
 
-// function rule_check()
-// {
-    
-// }
+// returns cella value (0 or 1) of the binary value of the above 3 cells provided 
+function rule_check(cell_value)
+{
+    // we could implement to just check if can be black since the squares are already white
+    // but we want to show we understand the problem :)
+    switch(cell_value)
+    {
+        case 0:
+            return 0;
+        case 1:
+            return 1;
+        case 2:
+            return 0;
+        case 3:
+            return 1;
+        case 4:
+            return 1;
+        case 5:
+            return 0;
+        case 6:
+            return 1;
+        default :
+            return 0;
+    }
+}
