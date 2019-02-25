@@ -18,6 +18,7 @@ function draw_rect( ctx, stroke, fill )
 }
 
 // =====================================================  draw_grid ====
+// draw starting grid
 function draw_grid( rctx, rminor, rmajor, rstroke, rfill  ) 
 {
     rctx.save( );
@@ -76,7 +77,11 @@ function cella_90( ctx, num_canvas_cells)
         
         // for indexing through the columns
         // you do not need to search every element since the rules expands linearly outwards in each direction
-        for ( var j = starting_index - i; j < half_num_canvas + i; ++j )
+		starting_index -=i;
+		if (starting_index < 0) {starting_index = 0;}
+		var jEnd = half_num_canvas + i;
+		if (jEnd > num_canvas_cells) {jEnd = num_canvas_cells;}
+        for (var j = starting_index - i; j < jEnd; ++j )// going too far over. 
         {
             // value to be passed into rule_rule check to determine the next generation of the cell
             var cell_value = 0;
@@ -84,17 +89,17 @@ function cella_90( ctx, num_canvas_cells)
             // checks to make sure that you don't index out of the array in the bottom row
             
             
-                // checks the value of above and left
-                if (array[i - 1][j - 1] === 1)
-                {
-                    cell_value += 4;
-                }
+            // checks the value of above and left
+            if (array[i - 1][j - 1] === 1 && j != 0)
+            {
+            	cell_value += 4;
+            }
 
                 // checks the value of above and right
-                if (array[i - 1][j + 1] === 1)
-                {
-                    cell_value += 1;
-                }
+            if (array[i - 1][j + 1] === 1 && j < num_canvas_cells)
+            {
+                cell_value += 1;
+            }
             
 
             // checks the value of right above
