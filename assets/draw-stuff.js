@@ -170,7 +170,7 @@ function rule_check(cell_value)
 
 async function color_cell(ctx, x, y)
 {
-    await sleep(1);
+    await sleep(.001);
     ctx.rect(x, y, 5, 5);
     ctx.fill();
 }

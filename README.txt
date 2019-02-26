@@ -1,5 +1,4 @@
-READNE: Notes on an HTML + CSS + JS example
-Time-stamp: <2019-02-03 20:31:18 Chuck Siska>
+README: Notes on Cella Rule 90
 ------------------------------------------------------------
 
 How to handle the JS-1 files to get results:
@@ -15,6 +14,3 @@ How to handle the JS-1 files to get results:
 
 How to show (and run) the web page:
 8. Drag and drop the html file onto a browser to see what it does.
-
-(*) Key: use fcn key F12 to open a "javascript console" in your browser
-and see what might be going wrong: errors and warnings.
