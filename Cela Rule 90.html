@@ -1,8 +1,7 @@
 <!-- 
 Authors: Jonathan Ishii, Matthew Mikulka
-Contact: jtishii@csu.fullerton.edu, MATTHEW PUT YOUR EMAIL HERE <--------------------------------------------------------
-Description: This program illustrates Wolfram's Rule-90 is based on a 1D array where each cell is active.
-            We will illustate on a webpage visually how this works
+Contact: jtishii@csu.fullerton.edu, mattmikulka@gmail.com
+Description: This file holds the main body of the program. It calls all the functions that draws the grid on the webpage.
 -->
 <!doctype html>
 <html>
@@ -23,7 +22,6 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
 
   <script src="assets/draw-stuff.js"></script>
   <script>
-  // after "Introducing JavaScript Game Development" by Stuart.
 
   // =====================================================  draw_title ====
   // Draw filled rect.
@@ -32,7 +30,6 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
       context.save( );
       context.fillStyle = 'purple';
       context.font = "30px Arial";
-      //context.fillText( "Grid", 150, 140 );
       context.restore( );
   }
   // =====================================================  Main ====
@@ -45,9 +42,6 @@ Description: This program illustrates Wolfram's Rule-90 is based on a 1D array w
     
     // Draws the line marks on the grid
     draw_grid( context, 5, 250, 'black', 'black' );
-
-    // puts words on the canvas
-    //draw_title( context );
 
     // fills the canvas
     var num_canvas_cells = 400;

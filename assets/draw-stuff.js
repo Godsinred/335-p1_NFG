@@ -1,8 +1,11 @@
-// Draw stuff
-// Time-stamp: <2019-01-21 20:08:33 Chuck Siska>
-// ------------------------------------------------------------
+/* 
+Authors: Jonathan Ishii, Matthew Mikulka
+Contact: jtishii@csu.fullerton.edu, mattmikulka@gmail.com
+Description: This program illustrates Wolfram's Rule-90 is based on a 1D array where each cell is active.
+            We will illustate on a webpage visually how this works. This file holds all the functions to be called by the Cela Rule 90.html file
+*/
 
-// FUN. Draw filled rect.
+// Draw filled rect.
 function draw_rect( ctx, stroke, fill ) 
 {
     stroke = stroke || 'black';
@@ -85,9 +88,6 @@ function cella_90( ctx, num_canvas_cells)
         {
             // value to be passed into rule_rule check to determine the next generation of the cell
             var cell_value = 0;
-
-            // checks to make sure that you don't index out of the array in the bottom row
-            
             
             // checks the value of above and left
             if (array[i - 1][j - 1] === 1 && j != 0)
@@ -95,12 +95,11 @@ function cella_90( ctx, num_canvas_cells)
             	cell_value += 4;
             }
 
-                // checks the value of above and right
+            // checks the value of above and right
             if (array[i - 1][j + 1] === 1 && j < num_canvas_cells)
             {
                 cell_value += 1;
             }
-            
 
             // checks the value of right above
             if (array[i - 1][j] === 1)
@@ -109,7 +108,6 @@ function cella_90( ctx, num_canvas_cells)
             }
 
             var color = rule_check(cell_value);
-            //console.log(color);
 
             // colors the square if it is 1 i.e. black, since the color is already white
             if (color === 1)
@@ -118,10 +116,6 @@ function cella_90( ctx, num_canvas_cells)
                 
                 if (j >= 0 && j < 400)
                 {
-                    // rect(the x cord in the upper left corner, the y cord of the upper left rect, width, height)
-                    // ctx.rect(x_offset + (j * 5), y_offset + (i * 5), 5, 5);
-                    // ctx.fill();
-
                     // made an asynchronous function so it loads the webpage before everything is finished
                     color_cell(ctx, x_offset + (j * 5), y_offset + (i * 5));
                 }
