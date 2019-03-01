@@ -1,6 +1,6 @@
 /* 
 Authors: Jonathan Ishii, Matthew Mikulka
-Contact: jtishii@csu.fullerton.edu, mattmikulka@gmail.com
+Contact: jtishii@csu.fullerton.edu, mattmikulka@csu.fullerton.edu
 Description: This program illustrates Wolfram's Rule-90 is based on a 1D array where each cell is active.
             We will illustate on a webpage visually how this works. This file holds all the functions to be called by the Cela Rule 90.html file
 */
@@ -125,6 +125,8 @@ function cella_90( ctx, num_canvas_cells)
     ctx.restore( );
 }
 
+
+//Colors in the starting cell for the project.
 function color_starting_square(ctx, num_canvas_cells, x_offset, y_offset)
 {
     ctx.save( );
