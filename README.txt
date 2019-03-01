@@ -1,4 +1,4 @@
-README: Notes on Cella Rule 90
+ README: Notes on Cella Rule 90
 ------------------------------------------------------------
 
 Class number: 335
@@ -24,5 +24,5 @@ cella Rule 90.html
 README.txt
 Assets/draw-stuff.js
 assets/styles.css
-tasks.docx
-complexity.docx
+tasks.PDF
+complexity.PDF
